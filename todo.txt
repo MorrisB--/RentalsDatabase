@@ -1,7 +1,3 @@
 To Do:
 
-* Create csv to import a mass amount of data
-* Consider using char[] instead of String for password, more secure
-
-* Create .sql file
-* Create java file
+* Start making final product
