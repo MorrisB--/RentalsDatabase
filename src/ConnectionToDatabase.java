@@ -27,15 +27,10 @@ public class ConnectionToDatabase {
 
 			Statement statement1 = connection.createStatement();
 			statement1.executeUpdate(sql1);
-			// Statement statement2 = connection.createStatement();
 			statement1.executeUpdate(sql2);
-			// Statement statement3 = connection.createStatement();
 			statement1.executeUpdate(sql3);
-			// Statement statement4 = connection.createStatement();
 			statement1.executeUpdate(sql4);
 
-			// Is this how you wanted us to select all?
-			// Statement statement5 = connection.createStatement();
 			System.out.println("\n" + sql5 + "\nid name");
 			ResultSet rs = statement1.executeQuery(sql5);
 			while (rs.next()) {
