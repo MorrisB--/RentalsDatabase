@@ -1,4 +1,6 @@
 To Do:
 
+*Create csv to import a mass amount of data
+
 * Create .sql file
 * Create java file
