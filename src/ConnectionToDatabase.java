@@ -10,10 +10,13 @@ public class ConnectionToDatabase {
 		try {
 
 			Scanner keyboard = new Scanner(System.in);
+			System.out.println("Enter your username: ");
+			String username = "jdbc:mysql://cs.neiu.edu:3306/db_Spr16_?" + keyboard.next() + "?";
+
 			System.out.println("Enter your password: ");
 			String password = "user=mballenger&password=" + keyboard.next();
 			
-			connection = DriverManager.getConnection("jdbc:mysql://cs.neiu.edu:3306/db_Spr16_mballenger?" + password);
+			connection = DriverManager.getConnection(username + password);
 
 			Statement statement1 = connection.createStatement();
 			String sql1 = "INSERT INTO Guest VALUES (106, 'TestL','TestF','111-111-1111')";
