@@ -1,4 +1,6 @@
 To Do:
 
-* Create .sql file
-* Create java file
+* Create tables
+* Allow new user to be created
+* Allow new item to be created
+* Allow new store to be created
