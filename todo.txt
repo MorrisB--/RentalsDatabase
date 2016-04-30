@@ -4,6 +4,13 @@ To Do:
 
 * Create searchCustomer() methods
 
+/* Store */
+
+* Create createStore() method
+  * Make sure this method alters the Item table to make a count for that store.
+    Location should be the primary key and the name of the column.
+    Default the count of all items to 0
+
 
 * Allow new item to be created
 * Allow new store to be created
