@@ -1,6 +1,9 @@
 To Do:
 
-* Create tables
-* Allow new user to be created
+/* Customer */
+
+* Create searchCustomer() methods
+
+
 * Allow new item to be created
 * Allow new store to be created
