@@ -20,4 +20,22 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
+	public void subtractFees(String Id, int payment) {
+
+		String subtractFees = "UPDATE Customer SET fees = fees - " + payment + " WHERE userId = " + Id + ";";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(subtractFees);
+			System.out.println("Payment successfully made.");
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
+
+	}
+
 }
