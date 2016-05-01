@@ -85,6 +85,7 @@ public class ConnectionToDatabase {
 			/*
 			 * Is there a smarter way to this? Can I somehow extract the int
 			 * from SELCT COUNT(*) FROM CUSTOMER
+			 * NTS: Try casting ResultSet to Int
 			 */
 			while (rs.next())
 				rows++;
