@@ -8,7 +8,6 @@ To Do:
 
 /* Item */
 
-* Create createItem(String name, double price, int lateFee)
 * Create addStock(String name, String storeId, int count)
 * Create subStock --TBD
 
@@ -16,7 +15,6 @@ To Do:
 
 
 Item name, price, lateFee, storeA, storeB, storeC
-* Create an item
 	ONCE ITEM IS CREATED
 * Increment count for certain store based off the name
 
