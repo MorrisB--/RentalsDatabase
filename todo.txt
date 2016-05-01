@@ -8,7 +8,6 @@ To Do:
 
 /* Item */
 
-* Create addStock(String name, String storeId, int count)
 * Create subStock --TBD
 
 
