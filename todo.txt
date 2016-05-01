@@ -14,6 +14,7 @@ To Do:
 /* Rents */ - May no longer need transNumber -- TBD
 
 ** Update Rents table to have new columns -- TBD
+* Update returning method to adjust user fees if needed
 
 
 
