@@ -72,10 +72,10 @@ public class ConnectionToDatabase {
 		}
 	}
 
-	public int getRows() {
+	public int getRows(String tableName) {
 
 		int rows = 0;
-		String selectCount = "SELECT * FROM CUSTOMER";
+		String selectCount = "SELECT * FROM " + tableName;
 
 		try {
 
