@@ -1,11 +1,22 @@
 To Do:
 
-/* Customer */
 
-* Create searchCustomer() methods
+*** Update SQL to make name the primary key in Item table
+* Create searching methods
+	* Search customer
 
-/* Store */
+
+/* Item */
+
+* Create subStock --TBD
 
 
-* Allow new item to be created
-* Allow new store to be created
+
+
+Item name, price, lateFee, storeA, storeB, storeC
+	ONCE ITEM IS CREATED
+* Increment count for certain store based off the name
+
+
+Rents - transNumber, itemRented, returnDate, customerId, store
+boolean returned (when this is true, increment the count in the Item table for the corressponding store)
