@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2016 at 06:23 PM
+-- Generation Time: Apr 30, 2016 at 07:51 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.14
+-- PHP Version: 5.5.9-1ubuntu4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_Spr16_mballenger`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Customer`
+--
+
+CREATE TABLE IF NOT EXISTS `Customer` (
+  `userId` int(11) NOT NULL DEFAULT '0',
+  `firstName` varchar(50) DEFAULT NULL,
+  `lastName` varchar(50) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `phoneNumber` varchar(50) DEFAULT NULL,
+  `fees` decimal(7,2) DEFAULT '0.00',
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -52,24 +68,10 @@ CREATE TABLE IF NOT EXISTS `Rents` (
 --
 
 CREATE TABLE IF NOT EXISTS `Store` (
+  `storeId` int(11) NOT NULL DEFAULT '0',
   `location` varchar(100) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `User`
---
-
-CREATE TABLE IF NOT EXISTS `User` (
-  `userId` int(11) NOT NULL DEFAULT '0',
-  `firstName` varchar(50) DEFAULT NULL,
-  `lastName` varchar(50) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `phoneNumber` varchar(50) DEFAULT NULL,
-  `fees` decimal(7,2) DEFAULT '0.00',
-  PRIMARY KEY (`userId`)
+  `name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`storeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
