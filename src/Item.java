@@ -3,9 +3,23 @@ import java.util.Scanner;
 
 public class Item extends ConnectionToDatabase {
 
-	public void createItem(String name, double price, int lateFee) {
+	public static void createItem() {
 
-		String insertItem = "INSERT INTO Item VALUES(" + name + ", " + price + ", " + lateFee + ");";
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("\nWhat is the name of the item? ");
+		String name = keyboard.next();
+		System.out.print("What is the price of the item? ");
+		String price = keyboard.next();
+		System.out.print("What is the late fee for the item? ");
+		String lateFee = keyboard.next();
+		keyboard.close();
+
+		/*
+		 * (name, price, lateFee) is needed because all other columns will use
+		 * their default values
+		 */
+		String insertItem = "INSERT INTO Item (name, price, lateFee) VALUES('" + name + "', " + price + ", " + lateFee
+				+ ");";
 
 		try {
 
@@ -31,7 +45,7 @@ public class Item extends ConnectionToDatabase {
 		System.out.print("How many of the items are you adding? ");
 		String count = keyboard.next();
 		keyboard.close();
-		
+
 		String incStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " + " + count + " WHERE name = "
 				+ name + ";";
 
