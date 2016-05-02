@@ -1,10 +1,22 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Rents extends Item {
 
-	public void rent(String customerId, String storeId, String itemName, String returnDate) {
+	public static void renting() {
 
-		String rent = "INSERT INTO Rents VALUES(" + itemName + ", " + returnDate + ", " + customerId + ", " + storeId
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("\nWhat is the customers ID? ");
+		int customerId = keyboard.nextInt();
+		System.out.print("What is the store ID? ");
+		int storeId = keyboard.nextInt();
+		System.out.print("What is the item name? ");
+		String itemName = keyboard.next();
+		System.out.print("What is the return date? ");
+		String returnDate = keyboard.next();
+		keyboard.close();
+		
+		String rent = "INSERT INTO Rents VALUES('" + itemName + "', " + returnDate + ", " + customerId + ", " + storeId
 				+ ");";
 
 		try {
@@ -21,7 +33,7 @@ public class Rents extends Item {
 		}
 	}
 
-	public void returning(String customerId, String storeId, String itemName) {
+	public void returning(int customerId, int storeId, String itemName) {
 
 		String delete = "DELETE FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
 				+ " AND itemName = " + itemName + "LIMIT 1;";
