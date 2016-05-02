@@ -13,8 +13,13 @@ public class Item extends ConnectionToDatabase {
 		System.out.print("What is the late fee for the item? ");
 		String lateFee = keyboard.next();
 		keyboard.close();
-		
-		String insertItem = "INSERT INTO Item VALUES(" + name + ", " + price + ", " + lateFee + ");";
+
+		/*
+		 * (name, price, lateFee) is needed because all other columns will use
+		 * their default values
+		 */
+		String insertItem = "INSERT INTO Item (name, price, lateFee) VALUES('" + name + "', " + price + ", " + lateFee
+				+ ");";
 
 		try {
 
@@ -40,7 +45,7 @@ public class Item extends ConnectionToDatabase {
 		System.out.print("How many of the items are you adding? ");
 		String count = keyboard.next();
 		keyboard.close();
-		
+
 		String incStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " + " + count + " WHERE name = "
 				+ name + ";";
 
