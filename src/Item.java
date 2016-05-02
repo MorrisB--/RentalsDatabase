@@ -21,7 +21,7 @@ public class Item extends ConnectionToDatabase {
 
 	}
 
-	public void addStock() {
+	public static void addStock() {
 
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("\nWhat is the name of the item? ");
@@ -32,7 +32,7 @@ public class Item extends ConnectionToDatabase {
 		String count = keyboard.next();
 		keyboard.close();
 		
-		String incStock = "UPDATE ITEM SET store" + storeId + " = store" + storeId + " + " + count + " WHERE name = "
+		String incStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " + " + count + " WHERE name = "
 				+ name + ";";
 
 		try {
