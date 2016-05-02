@@ -6,11 +6,6 @@ To Do:
 	* Search customer
 
 
-/* Item */
-
-* Create subStock -- TBD
-
-
 /* Rents */ - May no longer need transNumber -- TBD
 
 ** Update Rents table to have new columns -- TBD
