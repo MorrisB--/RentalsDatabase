@@ -33,7 +33,7 @@ public class Rents extends Item {
 		}
 	}
 
-	public void returning(String customerId, String storeId, String itemName) {
+	public void returning(int customerId, int storeId, String itemName) {
 
 		String delete = "DELETE FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
 				+ " AND itemName = " + itemName + "LIMIT 1;";
