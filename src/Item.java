@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Item extends ConnectionToDatabase {
 
@@ -20,8 +21,17 @@ public class Item extends ConnectionToDatabase {
 
 	}
 
-	public void addStock(String name, String storeId, int count) {
+	public void addStock() {
 
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("\nWhat is the name of the item? ");
+		String name = keyboard.next();
+		System.out.print("What is the store ID? ");
+		String storeId = keyboard.next();
+		System.out.print("How many of the items are you adding? ");
+		String count = keyboard.next();
+		keyboard.close();
+		
 		String incStock = "UPDATE ITEM SET store" + storeId + " = store" + storeId + " + " + count + " WHERE name = "
 				+ name + ";";
 
