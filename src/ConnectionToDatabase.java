@@ -35,7 +35,8 @@ public class ConnectionToDatabase {
 		connectToDatabase();
 		Scanner keyboard = new Scanner(System.in);
 
-		System.out.println("What would you like to do?\n\n1) Register a customer\n2) Add a new store");
+		System.out.println(
+				"What would you like to do?\n\n1) Register a customer\n2) Add a new store\n3) Create a new item\n4) Add items to a store");
 		int choice = keyboard.nextInt();
 
 		switch (choice) {
@@ -44,6 +45,12 @@ public class ConnectionToDatabase {
 			break;
 		case 2:
 			Store.createStore();
+			break;
+		case 3:
+			Item.createItem();
+			break;
+		case 4:
+			Item.addStock();
 			break;
 		default:
 			System.out.println("Please choose a valid number");
