@@ -42,4 +42,27 @@ public class Item extends ConnectionToDatabase {
 		}
 
 	}
+
+	public void subStock(String name, String storeId, int count) {
+
+		String decStock = "UPDATE ITEM SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
+				+ name + ";";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(decStock);
+			System.out.println(name + " has been succesfully subtracted from the system.");
+
+		} catch (
+
+		SQLException e)
+
+		{
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
+
+	}
 }

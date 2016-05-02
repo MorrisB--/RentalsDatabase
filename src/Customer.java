@@ -1,11 +1,24 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Customer extends ConnectionToDatabase {
 
-	public void createCustomer(String firstName, String lastName, String address, String phoneNumber) {
+	public static void createCustomer() {
 
-		String createCustomer = "INSERT INTO Customer VALUES (" + (this.getRows("Customer") + 1) + ", '" + firstName + "', '"
-				+ lastName + "', '" + address + "', '" + phoneNumber + "');";
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("What is the customers first name?");
+		String firstName = keyboard.next();
+		System.out.print("\nWhat is the customers last name?");
+		String lastName = keyboard.next();
+		System.out.print("\nWhat is the customers address?");
+		String address = keyboard.next();
+		System.out.print("\nWhat is the customers phone number?");
+		String phoneNumber = keyboard.next();
+		keyboard.close();
+		
+		//
+		String createCustomer = "INSERT INTO Customer VALUES (" + (getRows("Customer") + 1) + ", '" + firstName + "', '"
+				+ lastName + "', '" + address + "', '" + phoneNumber + "', 0);";
 
 		try {
 

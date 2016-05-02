@@ -1,11 +1,19 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Store extends ConnectionToDatabase {
 
-	public void createStore(String location, String name) {
+	public static void createStore() {
 
-		String createStore = "INSERT INTO Store VALUES (" + (getRows("Store") + 1) + ", " + location + ", " + name
-				+ ");";
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("\nWhat is the location of the store? ");
+		String location = keyboard.next();
+		System.out.print("What is the name of the store? ");
+		String name = keyboard.next();
+		keyboard.close();
+		
+		String createStore = "INSERT INTO Store VALUES (" + (getRows("Store") + 1) + ", '" + location + "', '" + name
+				+ "');";
 		String addStore = "ALTER TABLE Item ADD " + ("StoreId" + getRows("Store")) + " INT DEFAULT 0;";
 
 		try {

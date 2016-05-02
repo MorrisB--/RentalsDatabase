@@ -39,5 +39,5 @@ public class Rents extends Item {
 			System.out.println("SQLException: " + e.getErrorCode());
 		}
 	}
-
+ 
 }
