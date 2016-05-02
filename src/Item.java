@@ -46,8 +46,8 @@ public class Item extends ConnectionToDatabase {
 		String count = keyboard.next();
 		keyboard.close();
 
-		String incStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " + " + count + " WHERE name = "
-				+ name + ";";
+		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count + " WHERE name = '"
+				+ name + "';";
 
 		try {
 
