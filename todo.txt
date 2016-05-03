@@ -12,8 +12,12 @@ To Do:
 * Allow customer to pay for fees
 
 
+/* Item */
+
+* Allow user to subCount()
+
+
 /* Rents */
 
-* Create isItemAvailable() method to check the count of an item before renting,
-  must be greater than 0 to rent an item, else, item cannot be rented.
+
 * Update returning method to adjust user fees if needed
