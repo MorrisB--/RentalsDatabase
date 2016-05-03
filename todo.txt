@@ -9,7 +9,8 @@ To Do:
 
 /* Item */
 
-* Allow user to subCount()
+* Change column in Items table to something like "count_store4"
+  instead of "StoreId4"
 
 
 /* Rents */

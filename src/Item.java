@@ -96,12 +96,12 @@ public class Item extends ConnectionToDatabase {
 		String name = keyboard.next();
 		System.out.print("What is the store ID? ");
 		int storeId = keyboard.nextInt();
-		System.out.print("How many of the items are you adding? ");
+		System.out.print("How many of the items are you removing? ");
 		int count = keyboard.nextInt();
 		keyboard.close();
 
-		String decStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
-				+ name + ";";
+		String decStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " - " + count + " WHERE name = '"
+				+ name + "';";
 
 		try {
 
