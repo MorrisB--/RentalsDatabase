@@ -75,7 +75,6 @@ public class Item extends ConnectionToDatabase {
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(incStock);
-			System.out.println(name + " has been succesfully added to the system.");
 
 		} catch (
 
