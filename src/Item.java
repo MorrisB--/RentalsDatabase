@@ -46,8 +46,8 @@ public class Item extends ConnectionToDatabase {
 		String count = keyboard.next();
 		keyboard.close();
 
-		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count + " WHERE name = '"
-				+ name + "';";
+		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count
+				+ " WHERE name = '" + name + "';";
 
 		try {
 
@@ -66,10 +66,11 @@ public class Item extends ConnectionToDatabase {
 		}
 
 	}
+
 	public static void addStock(String name, int storeId, int count) {
 
-		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count + " WHERE name = '"
-				+ name + "';";
+		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count
+				+ " WHERE name = '" + name + "';";
 
 		try {
 
@@ -87,8 +88,9 @@ public class Item extends ConnectionToDatabase {
 		}
 
 	}
+
 	public static void subStock() {
-		
+
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("\nWhat is the name of the item? ");
 		String name = keyboard.next();
@@ -97,7 +99,7 @@ public class Item extends ConnectionToDatabase {
 		System.out.print("How many of the items are you adding? ");
 		int count = keyboard.nextInt();
 		keyboard.close();
-		
+
 		String decStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
 				+ name + ";";
 
@@ -106,6 +108,24 @@ public class Item extends ConnectionToDatabase {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(decStock);
 			System.out.println(name + " has been succesfully subtracted from the system.");
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
+
+	}
+
+	public static void subStock(String name, int storeId, int count) {
+
+		String decStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " - " + count
+				+ " WHERE name = '" + name + "';";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(decStock);
 
 		} catch (
 
@@ -118,26 +138,30 @@ public class Item extends ConnectionToDatabase {
 		}
 
 	}
-	
-	public static void subStock(String name, int storeId, int count) {
 
-		String decStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " - " + count + " WHERE name = '"
-				+ name + "';";
+	public static boolean isItemAvailable(String itemName, int storeId) {
+
+		String select = "SELECT StoreId" + storeId + " FROM Item WHERE name = '" + itemName + "';";
 
 		try {
 
 			Statement statement = connection.createStatement();
-			statement.executeUpdate(decStock);
+			ResultSet result = statement.executeQuery(select);
+			result.next();
+			int count = Integer.parseInt(result.getString("StoreId" + storeId));
 
-		} catch (
+			if (count > 0)
+				return true;
+			else
+				return false;
 
-		SQLException e)
-
-		{
+		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("SQLException: " + e.getErrorCode());
 		}
+
+		return false;
 
 	}
 }
