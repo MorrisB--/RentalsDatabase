@@ -12,19 +12,20 @@ public class Rents extends Item {
 		int storeId = keyboard.nextInt();
 		System.out.print("What is the item name? ");
 		String itemName = keyboard.next();
-		System.out.print("What is the return date? ");
+		System.out.print("What is the return date? (YYYY-MM-DD) ");
 		String returnDate = keyboard.next();
 		keyboard.close();
 		
-		String rent = "INSERT INTO Rents VALUES('" + itemName + "', " + returnDate + ", " + customerId + ", " + storeId
-				+ ");";
+		// should subStock first before renting to customer
+		String rent = "INSERT INTO Rents VALUES(" + customerId + ", '" + itemName + "', " + storeId + ", '" + returnDate
+				+ "');";
 
 		try {
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(rent);
 			subStock(itemName, storeId, 1);
-			System.out.println(itemName + " has succesfully been rented.");
+			System.out.println("\n" + itemName + " has succesfully been rented.");
 
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -36,7 +37,7 @@ public class Rents extends Item {
 	public void returning(int customerId, int storeId, String itemName) {
 
 		String delete = "DELETE FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
-				+ " AND itemName = " + itemName + "LIMIT 1;";
+				+ " AND itemName = '" + itemName + "' LIMIT 1;";
 
 		try {
 
