@@ -1,28 +1,19 @@
 To Do:
 
-
 *** Update SQL to make name the primary key in Item table
 * Create searching methods
 	* Search customer
+	* Search stores
+* Add loop to around CTD to allow more than one transaction to be made
 
 
-/* Rents */ - May no longer need transNumber -- TBD
+/* Customer */
 
-*** Test renting() method and make sure it works 
+* Allow customer to pay for fees
 
 
-** Update Rents table to have new columns -- TBD
+/* Rents */
+
+* Create isItemAvailable() method to check the count of an item before renting,
+  must be greater than 0 to rent an item, else, item cannot be rented.
 * Update returning method to adjust user fees if needed
-
-
-
-
-
-
-Item name, price, lateFee, storeA, storeB, storeC
-	ONCE ITEM IS CREATED
-* Increment count for certain store based off the name
-
-
-Rents - transNumber, itemRented, returnDate, customerId, store
-boolean returned (when this is true, increment the count in the Item table for the corressponding store)
