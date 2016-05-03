@@ -99,7 +99,7 @@ public class Item extends ConnectionToDatabase {
 		int count = keyboard.nextInt();
 		keyboard.close();
 		
-		String decStock = "UPDATE ITEM SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
+		String decStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
 				+ name + ";";
 
 		try {
@@ -122,7 +122,7 @@ public class Item extends ConnectionToDatabase {
 	
 	public static void subStock(String name, int storeId, int count) {
 
-		String decStock = "UPDATE ITEM SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
+		String decStock = "UPDATE Item SET store" + storeId + " = store" + storeId + " - " + count + " WHERE name = "
 				+ name + ";";
 
 		try {
