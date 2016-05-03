@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 30, 2016 at 07:51 PM
+-- Generation Time: May 03, 2016 at 09:13 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -36,6 +36,14 @@ CREATE TABLE IF NOT EXISTS `Customer` (
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Customer`
+--
+
+INSERT INTO `Customer` (`userId`, `firstName`, `lastName`, `address`, `phoneNumber`, `fees`) VALUES
+(1, 'fname1', 'lname2', 'ad1', '111', 0.00),
+(2, 'fname2', 'fname2', 'ad2', '222', 0.00);
+
 -- --------------------------------------------------------
 
 --
@@ -45,8 +53,16 @@ CREATE TABLE IF NOT EXISTS `Customer` (
 CREATE TABLE IF NOT EXISTS `Item` (
   `name` varchar(50) DEFAULT NULL,
   `price` decimal(7,2) DEFAULT NULL,
-  `lateFee` int(11) DEFAULT NULL
+  `lateFee` int(11) DEFAULT NULL,
+  `StoreId0` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Item`
+--
+
+INSERT INTO `Item` (`name`, `price`, `lateFee`, `StoreId0`) VALUES
+('item1', 2.00, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -55,10 +71,11 @@ CREATE TABLE IF NOT EXISTS `Item` (
 --
 
 CREATE TABLE IF NOT EXISTS `Rents` (
-  `transNumber` int(11) NOT NULL DEFAULT '0',
-  `itemRented` varchar(100) DEFAULT NULL,
+  `customerId` int(11) NOT NULL DEFAULT '0',
+  `itemName` varchar(100) NOT NULL DEFAULT '',
+  `storeId` int(11) DEFAULT NULL,
   `returnDate` date DEFAULT NULL,
-  PRIMARY KEY (`transNumber`)
+  PRIMARY KEY (`itemName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -73,6 +90,13 @@ CREATE TABLE IF NOT EXISTS `Store` (
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`storeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Store`
+--
+
+INSERT INTO `Store` (`storeId`, `location`, `name`) VALUES
+(1, 'loc1', 'sto1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

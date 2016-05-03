@@ -16,8 +16,8 @@ public class Rents extends Item {
 		String returnDate = keyboard.next();
 		keyboard.close();
 		
-		String rent = "INSERT INTO Rents VALUES('" + itemName + "', " + returnDate + ", " + customerId + ", " + storeId
-				+ ");";
+		String rent = "INSERT INTO Rents VALUES(" + customerId + ", '" + itemName + "', " + storeId + ", '" + returnDate
+				+ "');";
 
 		try {
 
