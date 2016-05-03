@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 03, 2016 at 09:13 AM
+-- Generation Time: May 03, 2016 at 09:22 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -74,8 +74,7 @@ CREATE TABLE IF NOT EXISTS `Rents` (
   `customerId` int(11) NOT NULL DEFAULT '0',
   `itemName` varchar(100) NOT NULL DEFAULT '',
   `storeId` int(11) DEFAULT NULL,
-  `returnDate` date DEFAULT NULL,
-  PRIMARY KEY (`itemName`)
+  `returnDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
