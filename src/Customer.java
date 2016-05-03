@@ -33,8 +33,15 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
-	public void subtractFees(String Id, int payment) {
+	public static void subtractFees() {
 
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("What is the customers ID? ");
+		int Id = keyboard.nextInt();
+		System.out.print("\nHow much is the customer paying? ");
+		double payment = keyboard.nextDouble();
+		keyboard.close();
+		
 		String subtractFees = "UPDATE Customer SET fees = fees - " + payment + " WHERE userId = " + Id + ";";
 
 		try {

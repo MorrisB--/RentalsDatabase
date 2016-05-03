@@ -7,11 +7,6 @@ To Do:
 * Add loop to around CTD to allow more than one transaction to be made
 
 
-/* Customer */
-
-* Allow customer to pay for fees
-
-
 /* Item */
 
 * Allow user to subCount()
