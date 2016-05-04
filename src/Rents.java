@@ -52,10 +52,51 @@ public class Rents extends Item {
 
 		try {
 
+			checkIfLate(customerId, storeId, itemName);
+
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(delete);
 			addStock(itemName, storeId, 1);
 			System.out.println(itemName + " has succesfully been returned.");
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
+	}
+
+	private static void checkIfLate(int customerId, int storeId, String itemName) {
+
+		String findDate = "SELECT * FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
+				+ " AND itemName = '" + itemName + "' LIMIT 1;";
+		try {
+			Statement statement = connection.createStatement();
+
+			ResultSet resultSet = statement.executeQuery(findDate);
+			resultSet.next();
+			String returnDate = resultSet.getString("returnDate");
+
+			String[] date = returnDate.split("-");
+
+			// consider turning this into its own method
+			long newReturnDate = (Long.parseLong(date[0]) * 365 * 24 * 60 * 60 * 1000)
+					+ (Long.parseLong(date[1]) * 30 * 24 * 60 * 60 * 1000)
+					+ (Long.parseLong(date[2]) * 24 * 60 * 60 * 1000);
+			long epoch = 62125920000000L;
+			newReturnDate -= epoch;
+			long today = System.currentTimeMillis();
+			System.out.println("For: "+ returnDate + " The returnDate is: " + newReturnDate + "\nTodays date is: " + today);
+			long difference = (today - newReturnDate) / 1000 / 60 / 60 / 24;
+			System.out.println("The difference is: " + difference);
+
+			if (difference > 0) {
+				String findFees = "SELECT * FROM Item WHERE name = '" + itemName + "' LIMIT 1;";
+				resultSet = statement.executeQuery(findFees);
+				resultSet.next();
+				double fees = Double.parseDouble(resultSet.getString("lateFee"));
+				Customer.addFees(customerId, fees);
+			}
 
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
