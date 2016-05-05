@@ -65,6 +65,9 @@ public class ConnectionToDatabase {
 			case 8:
 				Item.subStock();
 				break;
+			case 9:
+				Customer.listCustomers();
+				break;
 			case 10:
 				exit = true;
 				System.out.println("You are logged out.");

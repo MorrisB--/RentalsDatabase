@@ -6,17 +6,16 @@ public class Customer extends ConnectionToDatabase {
 	public static void createCustomer() {
 
 		Scanner keyboard = new Scanner(System.in);
-		System.out.print("What is the customers first name?");
+		System.out.print("What is the customers first name? ");
 		String firstName = keyboard.next();
-		System.out.print("\nWhat is the customers last name?");
+		System.out.print("\nWhat is the customers last name? ");
 		String lastName = keyboard.next();
-		System.out.print("\nWhat is the customers address?");
+		System.out.print("\nWhat is the customers address? ");
 		String address = keyboard.next();
-		System.out.print("\nWhat is the customers phone number?");
+		System.out.print("\nWhat is the customers phone number? ");
 		String phoneNumber = keyboard.next();
 		keyboard.close();
 
-		
 		String createCustomer = "INSERT INTO Customer VALUES (" + (getRows("Customer") + 1) + ", '" + firstName + "', '"
 				+ lastName + "', '" + address + "', '" + phoneNumber + "', 0);";
 
@@ -42,7 +41,6 @@ public class Customer extends ConnectionToDatabase {
 			statement.executeUpdate(updateCustomer);
 
 			System.out.println("Fees added to customer");
-
 
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -75,6 +73,30 @@ public class Customer extends ConnectionToDatabase {
 			System.out.println("SQLException: " + e.getErrorCode());
 		}
 
+	}
+
+	public static void listCustomers() {
+
+		String select = "SELECT * FROM Customer";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(select);
+
+			System.out.println("userId, firstName, lastName, address, phoneNumber, fees");
+			while (resultSet.next()) {
+				String column = resultSet.getString("userId") + " " + resultSet.getString("firstName") + " "
+						+ resultSet.getString("lastName") + " " + resultSet.getString("address") + " "
+						+ resultSet.getString("phoneNumber") + " " + resultSet.getString("fees");
+				System.out.println(column);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
 	}
 
 }

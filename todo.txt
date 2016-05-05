@@ -2,7 +2,6 @@ To Do:
 
 *** Update SQL to make name the primary key in Item table
 * Create searching methods
-	* Search customer
 	* Search stores
 
 
