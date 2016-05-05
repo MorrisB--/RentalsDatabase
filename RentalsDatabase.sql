@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 04, 2016 at 09:38 PM
+-- Generation Time: May 04, 2016 at 10:19 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -53,9 +53,10 @@ INSERT INTO `Customer` (`userId`, `firstName`, `lastName`, `address`, `phoneNumb
 --
 
 CREATE TABLE IF NOT EXISTS `Item` (
-  `name` varchar(50) DEFAULT NULL,
+  `name` varchar(50) NOT NULL DEFAULT '',
   `price` decimal(7,2) DEFAULT NULL,
-  `lateFee` int(11) DEFAULT NULL
+  `lateFee` int(11) DEFAULT NULL,
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
