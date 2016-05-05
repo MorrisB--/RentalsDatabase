@@ -22,6 +22,7 @@ public class ConnectionToDatabase {
 					+ username + "&password=" + password);
 
 			System.out.println("Successfully connected to database.");
+			
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -78,6 +79,9 @@ public class ConnectionToDatabase {
 				break;
 			case 12:
 				Store.listStores();
+				break;
+			case 13:
+				Item.listItems();
 				break;
 			default:
 				System.out.println("Please choose a valid number");

@@ -14,10 +14,6 @@ public class Item extends ConnectionToDatabase {
 		String lateFee = keyboard.next();
 		keyboard.close();
 
-		/*
-		 * (name, price, lateFee) is needed because all other columns will use
-		 * their default values
-		 */
 		String insertItem = "INSERT INTO Item (name, price, lateFee) VALUES('" + name + "', " + price + ", " + lateFee
 				+ ");";
 
@@ -163,5 +159,27 @@ public class Item extends ConnectionToDatabase {
 
 		return false;
 
+	}
+	
+	public static void listItems(){
+		String select = "SELECT * FROM Item";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(select);
+
+			System.out.println("name, price, lateFee");
+			while (resultSet.next()) {
+				String column = resultSet.getString("name") + " " + resultSet.getString("price") + " "
+						+ resultSet.getString("lateFee");
+				System.out.println(column);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
 	}
 }
