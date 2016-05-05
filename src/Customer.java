@@ -1,22 +1,21 @@
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Customer extends ConnectionToDatabase {
 
 	public static void createCustomer() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
-		System.out.print("What is the customers first name?");
-		String firstName = keyboard.next();
-		System.out.print("\nWhat is the customers last name?");
-		String lastName = keyboard.next();
-		System.out.print("\nWhat is the customers address?");
-		String address = keyboard.next();
-		System.out.print("\nWhat is the customers phone number?");
-		String phoneNumber = keyboard.next();
-		keyboard.close();
+		System.out.print("What is the customers first name? ");
+		String firstName = keyboard.nextLine();
+		System.out.print("What is the customers last name? ");
+		String lastName = keyboard.nextLine();
+		System.out.print("What is the customers address? ");
+		String address = keyboard.nextLine();
+		System.out.print("What is the customers phone number? ");
+		String phoneNumber = keyboard.nextLine();
 
-		
 		String createCustomer = "INSERT INTO Customer VALUES (" + (getRows("Customer") + 1) + ", '" + firstName + "', '"
 				+ lastName + "', '" + address + "', '" + phoneNumber + "', 0);";
 
@@ -33,16 +32,16 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
-	public static void addFees(int userId, double fees) {
-		try {
+	public static void addFees(String userId, String fees) {
+		
+		String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
 
-			String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
+		try {
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(updateCustomer);
 
 			System.out.println("Fees added to customer");
-
 
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -54,12 +53,12 @@ public class Customer extends ConnectionToDatabase {
 
 	public static void subtractFees() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("What is the customers ID? ");
 		int Id = keyboard.nextInt();
-		System.out.print("\nHow much is the customer paying? ");
+		System.out.print("How much is the customer paying? ");
 		double payment = keyboard.nextDouble();
-		keyboard.close();
 
 		String subtractFees = "UPDATE Customer SET fees = fees - " + payment + " WHERE userId = " + Id + ";";
 
@@ -75,6 +74,30 @@ public class Customer extends ConnectionToDatabase {
 			System.out.println("SQLException: " + e.getErrorCode());
 		}
 
+	}
+
+	public static void listCustomers() {
+
+		String select = "SELECT * FROM Customer";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(select);
+
+			System.out.println("userId, firstName, lastName, address, phoneNumber, fees");
+			while (resultSet.next()) {
+				String column = resultSet.getString("userId") + ", " + resultSet.getString("firstName") + ", "
+						+ resultSet.getString("lastName") + ", " + resultSet.getString("address") + ", "
+						+ resultSet.getString("phoneNumber") + ", " + resultSet.getString("fees");
+				System.out.println(column);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
 	}
 
 }

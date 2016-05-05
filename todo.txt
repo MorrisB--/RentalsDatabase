@@ -1,13 +1,11 @@
 To Do:
 
-*** Update SQL to make name the primary key in Item table
-* Create searching methods
-	* Search customer
-	* Search stores
-* Add loop to around CTD to allow more than one transaction to be made
+* Add proper descriptions for methods and good testing data
+* Dump new .sql when finished
 
 
-/* Item */
+Database 2.0:
 
-* Change column in Items table to something like "count_store4"
-  instead of "StoreId4"
+* Upgrade to use buttons
+* Find a better way to display the listing methods
+* Find a way to clear old SopLn
