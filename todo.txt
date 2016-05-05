@@ -11,9 +11,3 @@ To Do:
 
 * Change column in Items table to something like "count_store4"
   instead of "StoreId4"
-
-
-/* Rents */
-
-
-* Update returning method to adjust user fees if needed

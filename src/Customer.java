@@ -15,8 +15,8 @@ public class Customer extends ConnectionToDatabase {
 		System.out.print("\nWhat is the customers phone number?");
 		String phoneNumber = keyboard.next();
 		keyboard.close();
+
 		
-		//
 		String createCustomer = "INSERT INTO Customer VALUES (" + (getRows("Customer") + 1) + ", '" + firstName + "', '"
 				+ lastName + "', '" + address + "', '" + phoneNumber + "', 0);";
 
@@ -33,6 +33,25 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
+	public static void addFees(int userId, double fees) {
+		try {
+
+			String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
+
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(updateCustomer);
+
+			System.out.println("Fees added to customer");
+
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
+
+	}
+
 	public static void subtractFees() {
 
 		Scanner keyboard = new Scanner(System.in);
@@ -41,7 +60,7 @@ public class Customer extends ConnectionToDatabase {
 		System.out.print("\nHow much is the customer paying? ");
 		double payment = keyboard.nextDouble();
 		keyboard.close();
-		
+
 		String subtractFees = "UPDATE Customer SET fees = fees - " + payment + " WHERE userId = " + Id + ";";
 
 		try {
