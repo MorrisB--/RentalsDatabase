@@ -8,11 +8,11 @@ public class Customer extends ConnectionToDatabase {
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("What is the customers first name? ");
 		String firstName = keyboard.next();
-		System.out.print("\nWhat is the customers last name? ");
+		System.out.print("What is the customers last name? ");
 		String lastName = keyboard.next();
-		System.out.print("\nWhat is the customers address? ");
-		String address = keyboard.next();
-		System.out.print("\nWhat is the customers phone number? ");
+		System.out.print("What is the customers address? ");
+		String address = keyboard.nextLine();
+		System.out.print("What is the customers phone number? ");
 		String phoneNumber = keyboard.next();
 		keyboard.close();
 
