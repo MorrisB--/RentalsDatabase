@@ -1,6 +1,7 @@
 To Do:
 
 * Add proper descriptions for methods and good testing data
+* Dump new .sql when finished
 
 
 Database 2.0:
