@@ -1,5 +1,11 @@
+
 import java.sql.*;
 import java.util.*;
+
+/**
+ * @author Morris Ballenger
+ * @version 1.0
+ */
 
 public class ConnectionToDatabase {
 
@@ -94,6 +100,12 @@ public class ConnectionToDatabase {
 		}
 	}
 
+	/**
+	 * Takes any table and returns the number of rows starting at the top.
+	 * 
+	 * @param tableName
+	 * @return the number of rows a table has
+	 */
 	public static int getRows(String tableName) {
 
 		int rows = 0;

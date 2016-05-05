@@ -1,6 +1,13 @@
 import java.sql.*;
 import java.util.*;
 
+/**
+ * All the methods needed to properly user the Customer table.
+ * 
+ * @author Morris Ballenger
+ * @version 1.0
+ *
+ */
 public class Customer extends ConnectionToDatabase {
 
 	public static void createCustomer() {
@@ -33,7 +40,7 @@ public class Customer extends ConnectionToDatabase {
 	}
 
 	public static void addFees(String userId, String fees) {
-		
+
 		String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
 
 		try {

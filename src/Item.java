@@ -1,6 +1,14 @@
 import java.sql.*;
 import java.util.*;
 
+
+/**
+ * All the methods needed to properly user the Item table.
+ * 
+ * @author Morris Ballenger
+ * @version 1.0
+ *
+ */
 public class Item extends ConnectionToDatabase {
 
 	public static void createItem() {
@@ -35,7 +43,7 @@ public class Item extends ConnectionToDatabase {
 
 		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
-		System.out.print("\nWhat is the name of the item? ");
+		System.out.print("What is the name of the item? ");
 		String name = keyboard.nextLine();
 		System.out.print("What is the store ID? ");
 		String storeId = keyboard.nextLine();
@@ -49,7 +57,7 @@ public class Item extends ConnectionToDatabase {
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(incStock);
-			System.out.println(name + " has been succesfully added to the system.");
+			System.out.println(name + " has been succesfully stocked.");
 
 		} catch (
 

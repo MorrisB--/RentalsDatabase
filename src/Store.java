@@ -1,6 +1,13 @@
 import java.sql.*;
 import java.util.*;
 
+/**
+ * All the methods needed to properly user the Store table.
+ * 
+ * @author Morris Ballenger
+ * @version 1.0
+ *
+ */
 public class Store extends ConnectionToDatabase {
 
 	public static void createStore() {
@@ -14,7 +21,7 @@ public class Store extends ConnectionToDatabase {
 		
 		String createStore = "INSERT INTO Store VALUES (" + (getRows("Store") + 1) + ", '" + location + "', '" + name
 				+ "');";
-		String addStore = "ALTER TABLE Item ADD " + ("count_store" + getRows("Store")) + " INT DEFAULT 0;";
+		String addStore = "ALTER TABLE Item ADD " + ("count_store" + (getRows("Store")+1)) + " INT DEFAULT 0;";
 
 		try {
 

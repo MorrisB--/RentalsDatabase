@@ -1,6 +1,13 @@
 import java.sql.*;
 import java.util.Scanner;
 
+/**
+ * All the methods needed to properly user the Rents table.
+ * 
+ * @author Morris Ballenger
+ * @version 1.0
+ *
+ */
 public class Rents extends ConnectionToDatabase{
 
 	public static void renting() {
