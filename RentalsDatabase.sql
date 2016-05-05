@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 05, 2016 at 10:18 AM
+-- Generation Time: May 05, 2016 at 10:33 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -52,6 +52,19 @@ INSERT INTO `Customer` (`userId`, `firstName`, `lastName`, `address`, `phoneNumb
 (9, 'Susan', 'Strong', '224 Undergound Way', '312-565-7088', 0.00),
 (10, 'Kim-Kil', 'Whan', '4435 Hemmway', '312-458-7714', 0.00);
 
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `GoodCustomers`
+--
+CREATE TABLE IF NOT EXISTS `GoodCustomers` (
+`userId` int(11)
+,`firstName` varchar(50)
+,`lastName` varchar(50)
+,`address` varchar(100)
+,`phoneNumber` varchar(50)
+,`fees` decimal(7,2)
+);
 -- --------------------------------------------------------
 
 --
@@ -130,6 +143,15 @@ INSERT INTO `Store` (`storeId`, `location`, `name`) VALUES
 (1, 'Chicago IL', 'Movieland'),
 (2, 'Raleigh NC', 'Gameland'),
 (3, 'Austin TX', 'Super Super Great Rents');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `GoodCustomers`
+--
+DROP TABLE IF EXISTS `GoodCustomers`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`mballenger`@`%` SQL SECURITY DEFINER VIEW `GoodCustomers` AS select `Customer`.`userId` AS `userId`,`Customer`.`firstName` AS `firstName`,`Customer`.`lastName` AS `lastName`,`Customer`.`address` AS `address`,`Customer`.`phoneNumber` AS `phoneNumber`,`Customer`.`fees` AS `fees` from `Customer` where (`Customer`.`fees` = 0.00);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
