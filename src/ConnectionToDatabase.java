@@ -76,6 +76,9 @@ public class ConnectionToDatabase {
 			case 11:
 				Rents.listRentals();
 				break;
+			case 12:
+				Store.listStores();
+				break;
 			default:
 				System.out.println("Please choose a valid number");
 			}

@@ -30,5 +30,27 @@ public class Store extends ConnectionToDatabase {
 		}
 
 	}
+	
+public static void listStores(){
+	String select = "SELECT * FROM Store";
+
+	try {
+
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(select);
+
+		System.out.println("storeId, location, name");
+		while (resultSet.next()) {
+			String column = resultSet.getString("storeId") + " " + resultSet.getString("location") + " "
+					+ resultSet.getString("name");
+			System.out.println(column);
+		}
+
+	} catch (SQLException e) {
+		System.out.println("SQLException: " + e.getMessage());
+		System.out.println("SQLState: " + e.getSQLState());
+		System.out.println("SQLException: " + e.getErrorCode());
+	}
+}
 
 }
