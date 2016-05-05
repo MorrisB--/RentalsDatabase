@@ -33,9 +33,7 @@ public class Customer extends ConnectionToDatabase {
 			System.out.println(firstName + " " + lastName + " has been succesfully added to the system.");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
 		}
 	}
 
@@ -51,9 +49,8 @@ public class Customer extends ConnectionToDatabase {
 			System.out.println("Fees added to customer");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
+
 		}
 
 	}
@@ -76,9 +73,8 @@ public class Customer extends ConnectionToDatabase {
 			System.out.println("Payment successfully made.");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
+
 		}
 
 	}
@@ -101,9 +97,8 @@ public class Customer extends ConnectionToDatabase {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
+
 		}
 	}
 

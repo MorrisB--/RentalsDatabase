@@ -14,7 +14,7 @@ public class Store extends ConnectionToDatabase {
 
 		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
-		System.out.print("\nWhat is the location of the store? ");
+		System.out.print("What is the location of the store? ");
 		String location = keyboard.nextLine();
 		System.out.print("What is the name of the store? ");
 		String name = keyboard.nextLine();
@@ -31,9 +31,7 @@ public class Store extends ConnectionToDatabase {
 			System.out.println(name + " in " + location + " has been succesfully added to the system.");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
 		}
 
 	}
@@ -54,9 +52,7 @@ public static void listStores(){
 		}
 
 	} catch (SQLException e) {
-		System.out.println("SQLException: " + e.getMessage());
-		System.out.println("SQLState: " + e.getSQLState());
-		System.out.println("SQLException: " + e.getErrorCode());
+		System.out.println("Please try again and enter valid information.");
 	}
 }
 

@@ -120,9 +120,7 @@ public class ConnectionToDatabase {
 				rows++;
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
 		}
 
 		return rows;

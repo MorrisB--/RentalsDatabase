@@ -14,7 +14,7 @@ public class Rents extends ConnectionToDatabase{
 
 		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
-		System.out.print("\nWhat is the customers ID? ");
+		System.out.print("What is the customers ID? ");
 		String customerId = keyboard.nextLine();
 		System.out.print("What is the store ID? ");
 		String storeId = keyboard.nextLine();
@@ -34,9 +34,8 @@ public class Rents extends ConnectionToDatabase{
 				System.out.println("\n" + itemName + " has succesfully been rented.");
 
 			} catch (SQLException e) {
-				System.out.println("SQLException: " + e.getMessage());
-				System.out.println("SQLState: " + e.getSQLState());
-				System.out.println("SQLException: " + e.getErrorCode());
+				System.out.println("Please try again and enter valid information.");
+
 			}
 		} else
 			System.out.println("Item not rented, that item is not in stock.");
@@ -67,9 +66,8 @@ public class Rents extends ConnectionToDatabase{
 			System.out.println(itemName + " has succesfully been returned.");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
+
 		}
 	}
 

@@ -1,7 +1,6 @@
 import java.sql.*;
 import java.util.*;
 
-
 /**
  * All the methods needed to properly user the Item table.
  * 
@@ -32,9 +31,8 @@ public class Item extends ConnectionToDatabase {
 			System.out.println(name + " has been succesfully added to the system.");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
+
 		}
 
 	}
@@ -59,14 +57,8 @@ public class Item extends ConnectionToDatabase {
 			statement.executeUpdate(incStock);
 			System.out.println(name + " has been succesfully stocked.");
 
-		} catch (
-
-		SQLException e)
-
-		{
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+		} catch (SQLException e) {
+			System.out.println("Please try again and enter valid information.");
 		}
 
 	}
@@ -81,14 +73,8 @@ public class Item extends ConnectionToDatabase {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(incStock);
 
-		} catch (
-
-		SQLException e)
-
-		{
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+		} catch (SQLException e) {
+			System.out.println("Please try again and enter valid information.");
 		}
 
 	}
@@ -114,9 +100,7 @@ public class Item extends ConnectionToDatabase {
 			System.out.println(name + " has been succesfully subtracted from the system.");
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
 		}
 
 	}
@@ -131,14 +115,8 @@ public class Item extends ConnectionToDatabase {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(decStock);
 
-		} catch (
-
-		SQLException e)
-
-		{
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+		} catch (SQLException e) {
+			System.out.println("Please try again and enter valid information.");
 		}
 
 	}
@@ -160,9 +138,7 @@ public class Item extends ConnectionToDatabase {
 				return false;
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
 		}
 
 		return false;
@@ -185,9 +161,7 @@ public class Item extends ConnectionToDatabase {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Please try again and enter valid information.");
 		}
 	}
 }
