@@ -21,7 +21,7 @@ public class ConnectionToDatabase {
 			connection = DriverManager.getConnection("jdbc:mysql://cs.neiu.edu:3306/db_Spr16_" + username + "?user="
 					+ username + "&password=" + password);
 
-			System.out.println("Successfully connected to database.\n");
+			System.out.println("Successfully connected to database.");
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -37,9 +37,10 @@ public class ConnectionToDatabase {
 		boolean exit = false;
 		do {
 			System.out.print(
-					"What would you like to do?\n\n1) Register a customer\n2) Add a new store\n3) Create a new item\n4) Add items to a store\n5) Renting to customer\n6) Returning from customer\n7) Customer paying fees \n8) Remove items from store\n10) Exit\nChoice: ");
+					"\nWhat would you like to do?\n\n1) Register a customer\n2) Add a new store\n3) Create a new item\n4) Add items to a store\n5) Renting to customer\n6) Returning from customer\n7) Customer paying fees \n8) Remove items from store\n10) Exit\nChoice: ");
 			int choice = keyboard.nextInt();
-
+			System.out.println();
+			
 			switch (choice) {
 			case 1:
 				Customer.createCustomer();
@@ -71,6 +72,9 @@ public class ConnectionToDatabase {
 			case 10:
 				exit = true;
 				System.out.println("You are logged out.");
+				break;
+			case 11:
+				Rents.listRentals();
 				break;
 			default:
 				System.out.println("Please choose a valid number");

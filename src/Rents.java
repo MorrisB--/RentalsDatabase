@@ -108,4 +108,26 @@ public class Rents extends Item {
 		}
 	}
 
+	public static void listRentals(){
+		
+		String select = "SELECT * FROM Rents";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(select);
+
+			System.out.println("customerId, itemName, storeId, returnDate");
+			while (resultSet.next()) {
+				String column = resultSet.getString("customerId") + " " + resultSet.getString("itemName") + " "
+						+ resultSet.getString("storeId") + " " + resultSet.getString("returnDate");
+				System.out.println(column);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("SQLException: " + e.getErrorCode());
+		}
+	}
 }
