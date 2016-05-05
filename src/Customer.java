@@ -33,10 +33,10 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
-	public static void addFees(int customerId, double fees) {
+	public static void addFees(int userId, double fees) {
 		try {
 
-			String updateCustomer = "UPDATE Customer SET VALUES(fees = fees + " + fees + ") WHERE customerId = " + customerId + ";";
+			String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(updateCustomer);

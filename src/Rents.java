@@ -70,31 +70,34 @@ public class Rents extends Item {
 
 		String findDate = "SELECT * FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
 				+ " AND itemName = '" + itemName + "' LIMIT 1;";
+		String currentDate = "SELECT NOW();";
+		
 		try {
 			Statement statement = connection.createStatement();
 
 			ResultSet resultSet = statement.executeQuery(findDate);
 			resultSet.next();
 			String returnDate = resultSet.getString("returnDate");
-
-			String[] date = returnDate.split("-");
-
-			// consider turning this into its own method
-			long newReturnDate = (Long.parseLong(date[0]) * 365 * 24 * 60 * 60 * 1000)
-					+ (Long.parseLong(date[1]) * 30 * 24 * 60 * 60 * 1000)
-					+ (Long.parseLong(date[2]) * 24 * 60 * 60 * 1000);
-			long epoch = 62125920000000L;
-			newReturnDate -= epoch;
-			long today = System.currentTimeMillis();
-			System.out.println("For: "+ returnDate + " The returnDate is: " + newReturnDate + "\nTodays date is: " + today);
-			long difference = (today - newReturnDate) / 1000 / 60 / 60 / 24;
+			String[] splitReturnDate = returnDate.split("-");
+			
+			resultSet = statement.executeQuery(currentDate);
+			resultSet.next();
+			String dateNow = resultSet.getString("now()");
+			System.out.println("The dateNow is " + dateNow);
+			dateNow = dateNow.substring(0, 10);
+			String splitDateNow[] = dateNow.split("-");
+			
+			int difference = ((Integer.parseInt(splitDateNow[0])) - (Integer.parseInt(splitReturnDate[0]))) * 365
+					+ ((Integer.parseInt(splitDateNow[1])) - (Integer.parseInt(splitReturnDate[1]))) * 30
+					+ ((Integer.parseInt(splitDateNow[2])) - (Integer.parseInt(splitReturnDate[2])));
+			
 			System.out.println("The difference is: " + difference);
 
 			if (difference > 0) {
 				String findFees = "SELECT * FROM Item WHERE name = '" + itemName + "' LIMIT 1;";
 				resultSet = statement.executeQuery(findFees);
 				resultSet.next();
-				double fees = Double.parseDouble(resultSet.getString("lateFee"));
+				double fees = (Double.parseDouble(resultSet.getString("lateFee")) * difference);
 				Customer.addFees(customerId, fees);
 			}
 
