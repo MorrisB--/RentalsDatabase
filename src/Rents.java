@@ -1,27 +1,27 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class Rents extends Item {
+public class Rents extends ConnectionToDatabase{
 
 	public static void renting() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("\nWhat is the customers ID? ");
-		int customerId = keyboard.nextInt();
+		String customerId = keyboard.nextLine();
 		System.out.print("What is the store ID? ");
-		int storeId = keyboard.nextInt();
+		String storeId = keyboard.nextLine();
 		System.out.print("What is the item name? ");
-		String itemName = keyboard.next();
+		String itemName = keyboard.nextLine();
 		System.out.print("What is the return date? (YYYY-MM-DD) ");
-		String returnDate = keyboard.next();
-		keyboard.close();
+		String returnDate = keyboard.nextLine();
 
-		if (isItemAvailable(itemName, storeId)) {
+		if (Item.isItemAvailable(itemName, storeId)) {
 			String rent = "INSERT INTO Rents VALUES(" + customerId + ", '" + itemName + "', " + storeId + ", '"
 					+ returnDate + "');";
 
 			try {
-				subStock(itemName, storeId, 1);
+				Item.subStock(itemName, storeId, 1);
 				Statement statement = connection.createStatement();
 				statement.executeUpdate(rent);
 				System.out.println("\n" + itemName + " has succesfully been rented.");
@@ -38,14 +38,14 @@ public class Rents extends Item {
 
 	public static void returning() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("\nWhat is the customers ID? ");
-		int customerId = keyboard.nextInt();
+		String customerId = keyboard.nextLine();
 		System.out.print("What is the store ID? ");
-		int storeId = keyboard.nextInt();
+		String storeId = keyboard.nextLine();
 		System.out.print("What is the item name? ");
-		String itemName = keyboard.next();
-		keyboard.close();
+		String itemName = keyboard.nextLine();
 
 		String delete = "DELETE FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
 				+ " AND itemName = '" + itemName + "' LIMIT 1;";
@@ -56,7 +56,7 @@ public class Rents extends Item {
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(delete);
-			addStock(itemName, storeId, 1);
+			Item.addStock(itemName, storeId, "1");
 			System.out.println(itemName + " has succesfully been returned.");
 
 		} catch (SQLException e) {
@@ -66,7 +66,7 @@ public class Rents extends Item {
 		}
 	}
 
-	private static void checkIfLate(int customerId, int storeId, String itemName) {
+	private static void checkIfLate(String customerId, String storeId, String itemName) {
 
 		String findDate = "SELECT * FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
 				+ " AND itemName = '" + itemName + "' LIMIT 1;";
@@ -97,7 +97,7 @@ public class Rents extends Item {
 				String findFees = "SELECT * FROM Item WHERE name = '" + itemName + "' LIMIT 1;";
 				resultSet = statement.executeQuery(findFees);
 				resultSet.next();
-				double fees = (Double.parseDouble(resultSet.getString("lateFee")) * difference);
+				String fees = (Double.parseDouble(resultSet.getString("lateFee")) * difference) + "";
 				Customer.addFees(customerId, fees);
 			}
 
@@ -119,8 +119,8 @@ public class Rents extends Item {
 
 			System.out.println("customerId, itemName, storeId, returnDate");
 			while (resultSet.next()) {
-				String column = resultSet.getString("customerId") + " " + resultSet.getString("itemName") + " "
-						+ resultSet.getString("storeId") + " " + resultSet.getString("returnDate");
+				String column = resultSet.getString("customerId") + ", " + resultSet.getString("itemName") + ", "
+						+ resultSet.getString("storeId") + ", " + resultSet.getString("returnDate");
 				System.out.println(column);
 			}
 

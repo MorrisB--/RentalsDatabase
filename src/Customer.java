@@ -1,20 +1,20 @@
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Customer extends ConnectionToDatabase {
 
 	public static void createCustomer() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("What is the customers first name? ");
-		String firstName = keyboard.next();
+		String firstName = keyboard.nextLine();
 		System.out.print("What is the customers last name? ");
-		String lastName = keyboard.next();
+		String lastName = keyboard.nextLine();
 		System.out.print("What is the customers address? ");
 		String address = keyboard.nextLine();
 		System.out.print("What is the customers phone number? ");
-		String phoneNumber = keyboard.next();
-		keyboard.close();
+		String phoneNumber = keyboard.nextLine();
 
 		String createCustomer = "INSERT INTO Customer VALUES (" + (getRows("Customer") + 1) + ", '" + firstName + "', '"
 				+ lastName + "', '" + address + "', '" + phoneNumber + "', 0);";
@@ -32,10 +32,11 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
-	public static void addFees(int userId, double fees) {
-		try {
+	public static void addFees(String userId, String fees) {
+		
+		String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
 
-			String updateCustomer = "UPDATE Customer SET fees = fees + " + fees + " WHERE userId = " + userId + ";";
+		try {
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(updateCustomer);
@@ -52,12 +53,12 @@ public class Customer extends ConnectionToDatabase {
 
 	public static void subtractFees() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("What is the customers ID? ");
 		int Id = keyboard.nextInt();
-		System.out.print("\nHow much is the customer paying? ");
+		System.out.print("How much is the customer paying? ");
 		double payment = keyboard.nextDouble();
-		keyboard.close();
 
 		String subtractFees = "UPDATE Customer SET fees = fees - " + payment + " WHERE userId = " + Id + ";";
 
@@ -86,9 +87,9 @@ public class Customer extends ConnectionToDatabase {
 
 			System.out.println("userId, firstName, lastName, address, phoneNumber, fees");
 			while (resultSet.next()) {
-				String column = resultSet.getString("userId") + " " + resultSet.getString("firstName") + " "
-						+ resultSet.getString("lastName") + " " + resultSet.getString("address") + " "
-						+ resultSet.getString("phoneNumber") + " " + resultSet.getString("fees");
+				String column = resultSet.getString("userId") + ", " + resultSet.getString("firstName") + ", "
+						+ resultSet.getString("lastName") + ", " + resultSet.getString("address") + ", "
+						+ resultSet.getString("phoneNumber") + ", " + resultSet.getString("fees");
 				System.out.println(column);
 			}
 

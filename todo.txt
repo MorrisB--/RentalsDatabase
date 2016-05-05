@@ -1,5 +1,8 @@
 To Do:
 
+* Add proper descriptions for methods and good testing data
+
+
 Database 2.0:
 
 * Upgrade to use buttons

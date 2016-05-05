@@ -1,18 +1,18 @@
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Item extends ConnectionToDatabase {
 
 	public static void createItem() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
-		System.out.print("\nWhat is the name of the item? ");
-		String name = keyboard.next();
+		System.out.print("What is the name of the item? ");
+		String name = keyboard.nextLine();
 		System.out.print("What is the price of the item? ");
 		String price = keyboard.next();
 		System.out.print("What is the late fee for the item? ");
 		String lateFee = keyboard.next();
-		keyboard.close();
 
 		String insertItem = "INSERT INTO Item (name, price, lateFee) VALUES('" + name + "', " + price + ", " + lateFee
 				+ ");";
@@ -33,16 +33,16 @@ public class Item extends ConnectionToDatabase {
 
 	public static void addStock() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("\nWhat is the name of the item? ");
-		String name = keyboard.next();
+		String name = keyboard.nextLine();
 		System.out.print("What is the store ID? ");
-		String storeId = keyboard.next();
+		String storeId = keyboard.nextLine();
 		System.out.print("How many of the items are you adding? ");
-		String count = keyboard.next();
-		keyboard.close();
+		String count = keyboard.nextLine();
 
-		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count
+		String incStock = "UPDATE Item SET count_store" + storeId + " = count_store" + storeId + " + " + count
 				+ " WHERE name = '" + name + "';";
 
 		try {
@@ -63,9 +63,9 @@ public class Item extends ConnectionToDatabase {
 
 	}
 
-	public static void addStock(String name, int storeId, int count) {
+	public static void addStock(String name, String storeId, String count) {
 
-		String incStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " + " + count
+		String incStock = "UPDATE Item SET count_store" + storeId + " = count_store" + storeId + " + " + count
 				+ " WHERE name = '" + name + "';";
 
 		try {
@@ -87,17 +87,17 @@ public class Item extends ConnectionToDatabase {
 
 	public static void subStock() {
 
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("\nWhat is the name of the item? ");
-		String name = keyboard.next();
+		String name = keyboard.nextLine();
 		System.out.print("What is the store ID? ");
-		int storeId = keyboard.nextInt();
+		String storeId = keyboard.nextLine();
 		System.out.print("How many of the items are you removing? ");
-		int count = keyboard.nextInt();
-		keyboard.close();
+		String count = keyboard.nextLine();
 
-		String decStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " - " + count + " WHERE name = '"
-				+ name + "';";
+		String decStock = "UPDATE Item SET count_store" + storeId + " = count_store" + storeId + " - " + count
+				+ " WHERE name = '" + name + "';";
 
 		try {
 
@@ -113,9 +113,9 @@ public class Item extends ConnectionToDatabase {
 
 	}
 
-	public static void subStock(String name, int storeId, int count) {
+	public static void subStock(String name, String storeId, int count) {
 
-		String decStock = "UPDATE Item SET storeId" + storeId + " = storeId" + storeId + " - " + count
+		String decStock = "UPDATE Item SET count_store" + storeId + " = count_store" + storeId + " - " + count
 				+ " WHERE name = '" + name + "';";
 
 		try {
@@ -135,16 +135,16 @@ public class Item extends ConnectionToDatabase {
 
 	}
 
-	public static boolean isItemAvailable(String itemName, int storeId) {
+	public static boolean isItemAvailable(String itemName, String storeId) {
 
-		String select = "SELECT StoreId" + storeId + " FROM Item WHERE name = '" + itemName + "';";
+		String select = "SELECT count_store" + storeId + " FROM Item WHERE name = '" + itemName + "';";
 
 		try {
 
 			Statement statement = connection.createStatement();
 			ResultSet result = statement.executeQuery(select);
 			result.next();
-			int count = Integer.parseInt(result.getString("StoreId" + storeId));
+			int count = Integer.parseInt(result.getString("count_store" + storeId));
 
 			if (count > 0)
 				return true;
@@ -160,8 +160,8 @@ public class Item extends ConnectionToDatabase {
 		return false;
 
 	}
-	
-	public static void listItems(){
+
+	public static void listItems() {
 		String select = "SELECT * FROM Item";
 
 		try {
@@ -171,7 +171,7 @@ public class Item extends ConnectionToDatabase {
 
 			System.out.println("name, price, lateFee");
 			while (resultSet.next()) {
-				String column = resultSet.getString("name") + " " + resultSet.getString("price") + " "
+				String column = resultSet.getString("name") + ", " + resultSet.getString("price") + ", "
 						+ resultSet.getString("lateFee");
 				System.out.println(column);
 			}

@@ -10,7 +10,6 @@ public class ConnectionToDatabase {
 		try {
 
 			@SuppressWarnings("resource")
-			// keyboard will be closed in the main method
 			Scanner keyboard0 = new Scanner(System.in);
 			System.out.print("Enter your username: ");
 			String username = keyboard0.next();
@@ -37,51 +36,54 @@ public class ConnectionToDatabase {
 			Scanner keyboard = new Scanner(System.in);
 			boolean exit = false;
 			do {
-				System.out.print(
-						"\nWhat would you like to do?\n\n1) Register a customer\n2) Add a new store\n3) Create a new item\n4) Add items to a store\n5) Renting to customer\n6) Returning from customer\n7) Customer paying fees \n8) Remove items from store\n10) Exit\nChoice: ");
+				System.out.print("\nWhat would you like to do?\n\n1) List customers\n2) List rentals\n"
+						+ "3) List items\n4) List stores\n5) Register a customer\n"
+						+ "6) Renting to customer\n7) Returning from customer \n"
+						+ "8) Customer paying fees\n9) Create store\n10) Create new item\n11) Stock item\n"
+						+ "12) Remove stock\n13) Exit\nChoice: ");
 				int choice = keyboard.nextInt();
 				System.out.println();
 
 				switch (choice) {
 				case 1:
-					Customer.createCustomer();
-					break;
-				case 2:
-					Store.createStore();
-					break;
-				case 3:
-					Item.createItem();
-					break;
-				case 4:
-					Item.addStock();
-					break;
-				case 5:
-					Rents.renting();
-					break;
-				case 6:
-					Rents.returning();
-					break;
-				case 7:
-					Customer.subtractFees();
-					break;
-				case 8:
-					Item.subStock();
-					break;
-				case 9:
 					Customer.listCustomers();
 					break;
-				case 10:
-					exit = true;
-					System.out.println("You are logged out.");
-					break;
-				case 11:
+				case 2:
 					Rents.listRentals();
 					break;
-				case 12:
+				case 3:
+					Item.listItems();
+					break;
+				case 4:
 					Store.listStores();
 					break;
+				case 5:
+					Customer.createCustomer();
+					break;
+				case 6:
+					Rents.renting();
+					break;
+				case 7:
+					Rents.returning();
+					break;
+				case 8:
+					Customer.subtractFees();
+					break;
+				case 9:
+					Store.createStore();
+					break;
+				case 10:
+					Item.createItem();
+					break;
+				case 11:
+					Item.addStock();
+					break;
+				case 12:
+					Item.subStock();
+					break;
 				case 13:
-					Item.listItems();
+					exit = true;
+					System.out.println("You are logged out.");
 					break;
 				default:
 					System.out.println("Please choose a valid number");
@@ -90,45 +92,6 @@ public class ConnectionToDatabase {
 
 			keyboard.close();
 		}
-		// Connection connection = null;
-
-		// try {
-		/*
-		 * Scanner keyboard = new Scanner(System.in); System.out.println(
-		 * "Enter your username: "); String username = keyboard.next();
-		 * 
-		 * System.out.println("Enter your password: "); String password =
-		 * keyboard.next(); keyboard.close();
-		 * 
-		 * connection =
-		 * DriverManager.getConnection("jdbc:mysql://cs.neiu.edu:3306/db_Spr16_"
-		 * + username + "?user=" + username + "&password=" + password);
-		 */
-		// String sql1 = "INSERT INTO Breakfast VALUES (11, 'Syrup')";
-		// String sql2 = "INSERT INTO Breakfast VALUES (12, 'Extra Salt')";
-		// String sql3 = "DELETE FROM Breakfast WHERE id = 12";
-		// String sql4 = "INSERT INTO Breakfast VALUES (12, 'Light Salt')";
-		// String sql5 = "SELECT * FROM Breakfast";
-
-		// Statement statement1 = connection.createStatement();
-		// statement1.executeUpdate(sql1);
-		// statement1.executeUpdate(sql2);
-		// statement1.executeUpdate(sql3);
-		// statement1.executeUpdate(sql4);
-
-		// System.out.println("\n" + sql5 + "\nid name");
-		// ResultSet rs = statement1.executeQuery(sql5);
-		// while (rs.next()) {
-		// String all = rs.getString("id") + " " + rs.getString("name");
-		// System.out.println(all);
-		// }
-		/*
-		 * } catch (SQLException e) {
-		 * 
-		 * System.out.println("SQLException: " + e.getMessage());
-		 * System.out.println("SQLState: " + e.getSQLState());
-		 * System.out.println("SQLException: " + e.getErrorCode()); }
-		 */
 	}
 
 	public static int getRows(String tableName) {
@@ -141,11 +104,6 @@ public class ConnectionToDatabase {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(selectCount);
 
-			/*
-			 * Is there a smarter way to this? Can I somehow extract the int
-			 * from SELCT COUNT(*) FROM CUSTOMER NTS: Try casting ResultSet to
-			 * Int
-			 */
 			while (rs.next())
 				rows++;
 
