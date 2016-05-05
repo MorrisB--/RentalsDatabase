@@ -1,5 +1,5 @@
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * All the methods needed to properly user the Rents table.
@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @version 1.0
  *
  */
-public class Rents extends ConnectionToDatabase{
+public class Rents extends ConnectionToDatabase {
 
 	public static void renting() {
 
@@ -76,7 +76,7 @@ public class Rents extends ConnectionToDatabase{
 		String findDate = "SELECT * FROM Rents WHERE customerId = " + customerId + " AND storeId = " + storeId
 				+ " AND itemName = '" + itemName + "' LIMIT 1;";
 		String currentDate = "SELECT NOW();";
-		
+
 		try {
 			Statement statement = connection.createStatement();
 
@@ -84,18 +84,18 @@ public class Rents extends ConnectionToDatabase{
 			resultSet.next();
 			String returnDate = resultSet.getString("returnDate");
 			String[] splitReturnDate = returnDate.split("-");
-			
+
 			resultSet = statement.executeQuery(currentDate);
 			resultSet.next();
 			String dateNow = resultSet.getString("now()");
 			System.out.println("The dateNow is " + dateNow);
 			dateNow = dateNow.substring(0, 10);
 			String splitDateNow[] = dateNow.split("-");
-			
+
 			int difference = ((Integer.parseInt(splitDateNow[0])) - (Integer.parseInt(splitReturnDate[0]))) * 365
 					+ ((Integer.parseInt(splitDateNow[1])) - (Integer.parseInt(splitReturnDate[1]))) * 30
 					+ ((Integer.parseInt(splitDateNow[2])) - (Integer.parseInt(splitReturnDate[2])));
-			
+
 			System.out.println("The difference is: " + difference);
 
 			if (difference > 0) {
@@ -113,8 +113,8 @@ public class Rents extends ConnectionToDatabase{
 		}
 	}
 
-	public static void listRentals(){
-		
+	public static void listRentals() {
+
 		String select = "SELECT * FROM Rents";
 
 		try {

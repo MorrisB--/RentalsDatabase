@@ -18,10 +18,10 @@ public class Store extends ConnectionToDatabase {
 		String location = keyboard.nextLine();
 		System.out.print("What is the name of the store? ");
 		String name = keyboard.nextLine();
-		
+
 		String createStore = "INSERT INTO Store VALUES (" + (getRows("Store") + 1) + ", '" + location + "', '" + name
 				+ "');";
-		String addStore = "ALTER TABLE Item ADD " + ("count_store" + (getRows("Store")+1)) + " INT DEFAULT 0;";
+		String addStore = "ALTER TABLE Item ADD " + ("count_store" + (getRows("Store") + 1)) + " INT DEFAULT 0;";
 
 		try {
 
@@ -35,25 +35,25 @@ public class Store extends ConnectionToDatabase {
 		}
 
 	}
-	
-public static void listStores(){
-	String select = "SELECT * FROM Store";
 
-	try {
+	public static void listStores() {
+		String select = "SELECT * FROM Store";
 
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(select);
+		try {
 
-		System.out.println("storeId, location, name");
-		while (resultSet.next()) {
-			String column = resultSet.getString("storeId") + ", " + resultSet.getString("location") + ", "
-					+ resultSet.getString("name");
-			System.out.println(column);
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(select);
+
+			System.out.println("storeId, location, name");
+			while (resultSet.next()) {
+				String column = resultSet.getString("storeId") + ", " + resultSet.getString("location") + ", "
+						+ resultSet.getString("name");
+				System.out.println(column);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Please try again and enter valid information.");
 		}
-
-	} catch (SQLException e) {
-		System.out.println("Please try again and enter valid information.");
 	}
-}
 
 }
