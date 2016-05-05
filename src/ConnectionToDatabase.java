@@ -41,11 +41,11 @@ public class ConnectionToDatabase {
 			Scanner keyboard = new Scanner(System.in);
 			boolean exit = false;
 			do {
-				System.out.print("\nWhat would you like to do?\n\n1) List customers\n2) List rentals\n"
-						+ "3) List items\n4) List stores\n5) Register a customer\n"
-						+ "6) Renting to customer\n7) Returning from customer \n"
-						+ "8) Customer paying fees\n9) Create store\n10) Create new item\n11) Stock item\n"
-						+ "12) Remove stock\n13) Exit\nChoice: ");
+				System.out.print("\nWhat would you like to do?\n\n1) List customers\n2) List good customers\n3) List rentals\n"
+						+ "4) List items\n5) List stores\n6) Register a customer\n"
+						+ "7) Renting to customer\n8) Returning from customer \n"
+						+ "9) Customer paying fees\n10) Create store\n11) Create new item\n12) Stock item\n"
+						+ "13) Remove stock\n14) Exit\nChoice: ");
 				int choice = keyboard.nextInt();
 				System.out.println();
 
@@ -54,39 +54,42 @@ public class ConnectionToDatabase {
 					Customer.listCustomers();
 					break;
 				case 2:
-					Rents.listRentals();
+					Customer.listGoodCustomers();
 					break;
 				case 3:
-					Item.listItems();
+					Rents.listRentals();
 					break;
 				case 4:
-					Store.listStores();
+					Item.listItems();
 					break;
 				case 5:
-					Customer.createCustomer();
+					Store.listStores();
 					break;
 				case 6:
-					Rents.renting();
+					Customer.createCustomer();
 					break;
 				case 7:
-					Rents.returning();
+					Rents.renting();
 					break;
 				case 8:
-					Customer.subtractFees();
+					Rents.returning();
 					break;
 				case 9:
-					Store.createStore();
+					Customer.subtractFees();
 					break;
 				case 10:
-					Item.createItem();
+					Store.createStore();
 					break;
 				case 11:
-					Item.addStock();
+					Item.createItem();
 					break;
 				case 12:
-					Item.subStock();
+					Item.addStock();
 					break;
 				case 13:
+					Item.subStock();
+					break;
+				case 14:
 					exit = true;
 					System.out.println("You are logged out.");
 					break;

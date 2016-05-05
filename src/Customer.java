@@ -102,4 +102,27 @@ public class Customer extends ConnectionToDatabase {
 		}
 	}
 
+	public static void listGoodCustomers() {
+
+		String select = "SELECT * FROM GoodCustomers";
+
+		try {
+
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(select);
+
+			System.out.println("userId, firstName, lastName, address, phoneNumber, fees");
+			while (resultSet.next()) {
+				String column = resultSet.getString("userId") + ", " + resultSet.getString("firstName") + ", "
+						+ resultSet.getString("lastName") + ", " + resultSet.getString("address") + ", "
+						+ resultSet.getString("phoneNumber") + ", " + resultSet.getString("fees");
+				System.out.println(column);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Please try again and enter valid information.");
+
+		}
+	}
+
 }
