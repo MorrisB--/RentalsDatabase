@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 03, 2016 at 09:22 AM
+-- Generation Time: May 04, 2016 at 09:38 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -41,8 +41,10 @@ CREATE TABLE IF NOT EXISTS `Customer` (
 --
 
 INSERT INTO `Customer` (`userId`, `firstName`, `lastName`, `address`, `phoneNumber`, `fees`) VALUES
-(1, 'fname1', 'lname2', 'ad1', '111', 0.00),
-(2, 'fname2', 'fname2', 'ad2', '222', 0.00);
+(1, 'fname1', 'lname2', 'ad1', '111', 9.00),
+(2, 'fname2', 'fname2', 'ad2', '222', 0.00),
+(3, 'fname3', 'lname3', 'ad3', '333', 4.00),
+(4, 'firstname4', 'lname4', '4', '4444', 0.00);
 
 -- --------------------------------------------------------
 
@@ -53,16 +55,8 @@ INSERT INTO `Customer` (`userId`, `firstName`, `lastName`, `address`, `phoneNumb
 CREATE TABLE IF NOT EXISTS `Item` (
   `name` varchar(50) DEFAULT NULL,
   `price` decimal(7,2) DEFAULT NULL,
-  `lateFee` int(11) DEFAULT NULL,
-  `StoreId0` int(11) DEFAULT '0'
+  `lateFee` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `Item`
---
-
-INSERT INTO `Item` (`name`, `price`, `lateFee`, `StoreId0`) VALUES
-('item1', 2.00, 3, 5);
 
 -- --------------------------------------------------------
 

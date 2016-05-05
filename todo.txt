@@ -3,9 +3,3 @@ To Do:
 *** Update SQL to make name the primary key in Item table
 * Create searching methods
 	* Search stores
-
-
-/* Item */
-
-* Change column in Items table to something like "count_store4"
-  instead of "StoreId4"

@@ -14,7 +14,7 @@ public class Store extends ConnectionToDatabase {
 		
 		String createStore = "INSERT INTO Store VALUES (" + (getRows("Store") + 1) + ", '" + location + "', '" + name
 				+ "');";
-		String addStore = "ALTER TABLE Item ADD " + ("StoreId" + getRows("Store")) + " INT DEFAULT 0;";
+		String addStore = "ALTER TABLE Item ADD " + ("count_store" + getRows("Store")) + " INT DEFAULT 0;";
 
 		try {
 
