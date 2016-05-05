@@ -5,7 +5,7 @@ public class ConnectionToDatabase {
 
 	static Connection connection = null;
 
-	public static void connectToDatabase() {
+	public static boolean connectToDatabase() {
 
 		try {
 
@@ -22,73 +22,74 @@ public class ConnectionToDatabase {
 					+ username + "&password=" + password);
 
 			System.out.println("Successfully connected to database.");
-			
+			return true;
+
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("SQLException: " + e.getErrorCode());
+			System.out.println("Invalid username or password. Restart program and try again.");
 		}
 
+		return false;
 	}
 
 	public static void main(String[] args) {
 
-		connectToDatabase();
-		Scanner keyboard = new Scanner(System.in);
-		boolean exit = false;
-		do {
-			System.out.print(
-					"\nWhat would you like to do?\n\n1) Register a customer\n2) Add a new store\n3) Create a new item\n4) Add items to a store\n5) Renting to customer\n6) Returning from customer\n7) Customer paying fees \n8) Remove items from store\n10) Exit\nChoice: ");
-			int choice = keyboard.nextInt();
-			System.out.println();
-			
-			switch (choice) {
-			case 1:
-				Customer.createCustomer();
-				break;
-			case 2:
-				Store.createStore();
-				break;
-			case 3:
-				Item.createItem();
-				break;
-			case 4:
-				Item.addStock();
-				break;
-			case 5:
-				Rents.renting();
-				break;
-			case 6:
-				Rents.returning();
-				break;
-			case 7:
-				Customer.subtractFees();
-				break;
-			case 8:
-				Item.subStock();
-				break;
-			case 9:
-				Customer.listCustomers();
-				break;
-			case 10:
-				exit = true;
-				System.out.println("You are logged out.");
-				break;
-			case 11:
-				Rents.listRentals();
-				break;
-			case 12:
-				Store.listStores();
-				break;
-			case 13:
-				Item.listItems();
-				break;
-			default:
-				System.out.println("Please choose a valid number");
-			}
-		} while (!exit);
-		
-		keyboard.close();
+		if (connectToDatabase()) {
+			Scanner keyboard = new Scanner(System.in);
+			boolean exit = false;
+			do {
+				System.out.print(
+						"\nWhat would you like to do?\n\n1) Register a customer\n2) Add a new store\n3) Create a new item\n4) Add items to a store\n5) Renting to customer\n6) Returning from customer\n7) Customer paying fees \n8) Remove items from store\n10) Exit\nChoice: ");
+				int choice = keyboard.nextInt();
+				System.out.println();
+
+				switch (choice) {
+				case 1:
+					Customer.createCustomer();
+					break;
+				case 2:
+					Store.createStore();
+					break;
+				case 3:
+					Item.createItem();
+					break;
+				case 4:
+					Item.addStock();
+					break;
+				case 5:
+					Rents.renting();
+					break;
+				case 6:
+					Rents.returning();
+					break;
+				case 7:
+					Customer.subtractFees();
+					break;
+				case 8:
+					Item.subStock();
+					break;
+				case 9:
+					Customer.listCustomers();
+					break;
+				case 10:
+					exit = true;
+					System.out.println("You are logged out.");
+					break;
+				case 11:
+					Rents.listRentals();
+					break;
+				case 12:
+					Store.listStores();
+					break;
+				case 13:
+					Item.listItems();
+					break;
+				default:
+					System.out.println("Please choose a valid number");
+				}
+			} while (!exit);
+
+			keyboard.close();
+		}
 		// Connection connection = null;
 
 		// try {
