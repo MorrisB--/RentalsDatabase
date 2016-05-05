@@ -16,7 +16,7 @@ public class Customer extends ConnectionToDatabase {
 		String phoneNumber = keyboard.next();
 		keyboard.close();
 
-		//
+		
 		String createCustomer = "INSERT INTO Customer VALUES (" + (getRows("Customer") + 1) + ", '" + firstName + "', '"
 				+ lastName + "', '" + address + "', '" + phoneNumber + "', 0);";
 
@@ -50,28 +50,6 @@ public class Customer extends ConnectionToDatabase {
 			System.out.println("SQLException: " + e.getErrorCode());
 		}
 
-	}
-
-	/**
-	 * ASSUMING THERE ARE 30 DAYS IN A MONTH
-	 * 
-	 * @param stringDate
-	 * @return long, the new
-	 */
-	public static long convertDateToMilliseconds(String stringDate) {
-
-		System.out.println("Entered convertDateToMilliseconds");
-		String[] date = stringDate.split("-");
-
-		long returnDate = (Long.parseLong(date[0]) * 365 * 24 * 60 * 60 * 1000)
-				+ (Long.parseLong(date[1]) * 30 * 24 * 60 * 60 * 1000)
-				+ (Long.parseLong(date[2]) * 24 * 60 * 60 * 1000);
-		long today = System.currentTimeMillis();
-		System.out.println("The returnDate is: " + returnDate + "\nTodays date is: " + today);
-		long difference = (today - returnDate) * 1000 * 60 * 60 * 24;
-		System.out.println("The difference is: " + difference);
-
-		return difference;
 	}
 
 	public static void subtractFees() {
