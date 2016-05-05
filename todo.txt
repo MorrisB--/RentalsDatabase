@@ -4,7 +4,6 @@ To Do:
 * Create searching methods
 	* Search customer
 	* Search stores
-* Add loop to around CTD to allow more than one transaction to be made
 
 
 /* Item */
