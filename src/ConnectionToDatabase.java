@@ -15,6 +15,7 @@ public class ConnectionToDatabase {
 		try {
 
 			@SuppressWarnings("resource")
+			// Keyboard will be closed in main method
 			Scanner keyboard0 = new Scanner(System.in);
 			System.out.print("Enter your username: ");
 			String username = keyboard0.next();
@@ -26,6 +27,7 @@ public class ConnectionToDatabase {
 					+ username + "&password=" + password);
 
 			System.out.println("Successfully connected to database.");
+			
 			return true;
 
 		} catch (SQLException e) {
